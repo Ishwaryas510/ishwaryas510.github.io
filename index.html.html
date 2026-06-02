@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ishwarya Sivaprakash - Freelance Digital Marketing Specialist helping businesses grow through strategic digital marketing, Meta Ads, Google Ads, and creative content." />
+  <meta name="keywords" content="digital marketing, Meta Ads, Google Ads, social media marketing, SEO, lead generation, Ishwarya Sivaprakash" />
+  <title>Ishwarya Sivaprakash | Freelance Digital Marketing Specialist</title>
+
+  <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap)" rel="stylesheet" />
+  <link href="[cdnjs.cloudflare.com](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css)" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS RESET & VARIABLES
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:   #8B5CF6;
+      --secondary: #A78BFA;
+      --accent:    #C4B5FD;
+      --bg:        #FAF7FF;
+      --card-bg:   #ffffff;
+      --text:      #1F2937;
+      --text-muted:#6B7280;
+      --gradient:  linear-gradient(135deg, #8B5CF6 0%, #A78BFA 50%, #C4B5FD 100%);
+      --glass:     rgba(255,255,255,0.15);
+      --glass-border: rgba(255,255,255,0.3);
+      --shadow:    0 20px 60px rgba(139,92,246,0.15);
+      --shadow-lg: 0 30px 80px rgba(139,92,246,0.25);
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ============================================================
+       CUSTOM CURSOR
+    ============================================================ */
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+    }
+    .cursor-follower {
+      width: 36px; height: 36px;
+      border: 2px solid var(--secondary);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: all 0.15s ease;
+      opacity: 0.6;
+    }
+    .cursor.hover { transform: translate(-50%,-50%) scale(2.5); background: var(--secondary); }
+    .cursor-follower.hover { transform: translate(-50%,-50%) scale(1.5); opacity: 0.3; }
+
+    /* ============================================================
+       LOADER
+    ============================================================ */
+    #loader {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg, #1a0533 0%, #2d1052 100%);
+      z-index: 100000;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 20px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-text {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: white; font-weight: 800;
+      letter-spacing: 2px;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .loader-bar {
+      width: 200px; height: 3px;
+      background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;
+    }
+    .loader-bar-inner {
+      height: 100%;
+      background: var(--gradient);
+      border-radius: 10px;
+      animation: loadBar 1.8s ease forwards;
+    }
+    @keyframes loadBar { from { width: 0; } to { width: 100%; } }
+
+    /* ============================================================
+       PARTICLES
+    ============================================================ */
+    #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--primary);
+      opacity: 0.08;
+      animation: floatParticle linear infinite;
+    }
+    @keyframes floatParticle {
+      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.08; }
+      90%  { opacity: 0.08; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      width: min(90%, 1100px);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      padding: 14px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 9999;
+      box-shadow: 0 8px 32px rgba(139,92,246,0.12);
+      transition: all 0.3s ease;
+    }
+    nav.scrolled { top: 10px; box-shadow: 0 12px 40px rgba(139,92,246,0.2); }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.25rem;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none; white-space: nowrap;
+    }
+
+    .nav-links { display: flex; gap: 8px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text);
+      font-size: 0.875rem; font-weight: 500;
+      padding: 8px 16px; border-radius: 100px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--gradient); color: white;
+      box-shadow: 0 4px 15px rgba(139,92,246,0.3);
+    }
+
+    .nav-cta {
+      background: var(--gradient); color: white !important;
+      padding: 10px 24px !important; border-radius: 100px !important;
+      box-shadow: 0 4px 20px rgba(139,92,246,0.3);
+      font-weight: 600 !important;
+    }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--primary); border-radius: 2px; transition: all 0.3s; }
+
+    /* ============================================================
+       SECTION UTILITIES
+    ============================================================ */
+    section { position: relative; z-index: 1; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .section-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(139,92,246,0.1); color: var(--primary);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      border: 1px solid rgba(139,92,246,0.2);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15; margin-bottom: 16px;
+    }
+
+    .gradient-text {
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted); font-size: 1.05rem; line-height: 1.7;
+      max-width: 600px;
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #1a0533 0%, #2d1052 35%, #3b0f6b 60%, #1a0533 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 24px 80px;
+      overflow: hidden; position: relative;
+    }
+
+    .hero-bg-orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); pointer-events: none; opacity: 0.4;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+    .orb1 { width: 500px; height: 500px; background: #8B5CF6; top: -10%; left: -5%; animation-delay: 0s; }
+    .orb2 { width: 400px; height: 400px; background: #A78BFA; bottom: -5%; right: -5%; animation-delay: 3s; }
+    .orb3 { width: 300px; height: 300px; background: #C4B5FD; top: 40%; left: 30%; animation-delay: 1.5s; opacity: 0.2; }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%       { transform: translate(30px, -30px) scale(1.05); }
+    }
+
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: var(--accent); padding: 8px 18px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+    .hero-badge i { color: #FFD700; }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: white; line-height: 1.1; margin-bottom: 12px;
+    }
+    .hero-name span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .hero-title {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--accent); font-weight: 500; margin-bottom: 16px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: white; font-weight: 700; line-height: 1.3; margin-bottom: 24px;
+    }
+
+    .hero-desc {
+      color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.8;
+      margin-bottom: 36px; max-width: 520px;
+    }
+
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gradient); color: white;
+      padding: 16px 32px; border-radius: 100px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      box-shadow: 0 8px 30px rgba(139,92,246,0.5);
+      transition: all 0.3s ease; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 40px rgba(139,92,246,0.6); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.1); color: white;
+      padding: 16px 32px; border-radius: 100px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease; cursor: pointer;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 48px; flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-stat-label { color: rgba(255,255,255,0.6); font-size: 0.78rem; }
+
+    /* Hero Visual */
+    .hero-visual { position: relative; height: 520px; display: flex; align-items: center; justify-content: center; }
+
+    .hero-laptop {
+      width: 340px; height: 220px;
+      background: linear-gradient(145deg, #1e1040, #2d1a5e);
+      border-radius: 16px; border: 2px solid rgba(139,92,246,0.4);
+      position: relative; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(139,92,246,0.2);
+      animation: laptopFloat 6s ease-in-out infinite;
+    }
+    @keyframes laptopFloat { 0%,100% { transform: translateY(0px) rotateX(5deg) rotateY(-5deg); } 50% { transform: translateY(-20px) rotateX(5deg) rotateY(-5deg); } }
+
+    .laptop-screen {
+      position: absolute; inset: 12px;
+      background: linear-gradient(160deg, #0f0425, #1a0533);
+      border-radius: 10px; overflow: hidden;
+      display: flex; flex-direction: column; gap: 10px; padding: 14px;
+    }
+    .laptop-topbar { display: flex; gap: 6px; align-items: center; }
+    .laptop-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .laptop-dot:nth-child(1) { background: #ff5f57; }
+    .laptop-dot:nth-child(2) { background: #febc2e; }
+    .laptop-dot:nth-child(3) { background: #28c840; }
+
+    .laptop-graph {
+      flex: 1; display: flex; align-items: flex-end; gap: 6px; padding-top: 10px;
+    }
+    .graph-bar {
+      flex: 1; border-radius: 4px 4px 0 0;
+      background: var(--gradient); opacity: 0.8;
+      animation: graphGrow 2s ease-out forwards;
+      transform-origin: bottom;
+    }
+    @keyframes graphGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+    .laptop-metrics {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+    }
+    .metric-card {
+      background: rgba(139,92,246,0.15); border-radius: 6px;
+      padding: 6px 8px; border: 1px solid rgba(139,92,246,0.2);
+    }
+    .metric-label { color: rgba(255,255,255,0.5); font-size: 0.55rem; }
+    .metric-val { color: white; font-size: 0.75rem; font-weight: 700; }
+    .metric-up { color: #10b981; font-size: 0.55rem; }
+
+    /* Floating orbit cards */
+    .float-card {
+      position: absolute;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px; padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      animation: floatCard 5s ease-in-out infinite;
+      white-space: nowrap;
+    }
+    .float-card .fc-icon { font-size: 1.4rem; }
+    .float-card .fc-label { color: white; font-size: 0.78rem; font-weight: 600; }
+    .float-card .fc-val { color: var(--accent); font-size: 0.7rem; }
+
+    .fc1 { top: 5%; left: -8%; animation-delay: 0s; }
+    .fc2 { top: 20%; right: -10%; animation-delay: 1s; }
+    .fc3 { bottom: 25%; left: -12%; animation-delay: 2s; }
+    .fc4 { bottom: 8%; right: -8%; animation-delay: 0.5s; }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+    ============================================================ */
+    #about { padding: 120px 24px; background: white; }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative; display: flex; justify-content: center;
+    }
+    .about-img-bg {
+      width: 380px; height: 420px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(196,181,253,0.2));
+      border-radius: 40px; position: relative;
+      border: 2px solid rgba(139,92,246,0.15);
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-avatar-text {
+      font-size: 8rem; animation: floatSlow 4s ease-in-out infinite;
+    }
+    @keyframes floatSlow { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+
+    .about-badge-card {
+      position: absolute;
+      background: white;
+      border-radius: 16px; padding: 14px 18px;
+      box-shadow: var(--shadow);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .abc1 { bottom: -20px; left: -20px; }
+    .abc2 { top: -15px; right: -15px; }
+    .abc-icon { font-size: 1.5rem; }
+    .abc-text p:first-child { font-size: 0.75rem; color: var(--text-muted); }
+    .abc-text p:last-child { font-size: 0.9rem; font-weight: 700; color: var(--primary); }
+
+    .about-content { }
+    .about-desc { color: var(--text-muted); line-height: 1.85; margin-bottom: 20px; font-size: 1rem; }
+
+    .about-highlights {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0;
+    }
+    .highlight-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--bg); border-radius: 14px; padding: 16px;
+      border: 1px solid rgba(139,92,246,0.1);
+      transition: all 0.3s ease;
+    }
+    .highlight-item:hover { border-color: var(--secondary); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .highlight-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(196,181,253,0.2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .highlight-text h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 4px; }
+    .highlight-text p { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* ============================================================
+       SERVICES SECTION
+    ============================================================ */
+    #services { padding: 120px 24px; background: var(--bg); }
+
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-header .section-subtitle { margin: 0 auto; }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: white; border-radius: 24px; padding: 32px;
+      border: 1px solid rgba(139,92,246,0.08);
+      box-shadow: 0 4px 24px rgba(139,92,246,0.06);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gradient); opacity: 0;
+      transition: opacity 0.4s ease; z-index: 0;
+    }
+    .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+    .service-card:hover::before { opacity: 0.03; }
+    .service-card:hover .service-icon { transform: translateY(-6px) scale(1.1); }
+
+    .service-card > * { position: relative; z-index: 1; }
+
+    .service-icon {
+      width: 64px; height: 64px; border-radius: 18px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(196,181,253,0.2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin-bottom: 20px;
+      transition: transform 0.4s ease;
+      border: 1px solid rgba(139,92,246,0.15);
+    }
+
+    .service-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: var(--text); }
+    .service-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; margin-bottom: 20px; }
+
+    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .service-tag {
+      background: rgba(139,92,246,0.08); color: var(--primary);
+      padding: 4px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 600;
+      border: 1px solid rgba(139,92,246,0.15);
+    }
+
+    /* ============================================================
+       STATS SECTION
+    ============================================================ */
+    #stats {
+      padding: 100px 24px;
+      background: linear-gradient(135deg, #1a0533 0%, #2d1052 100%);
+      position: relative; overflow: hidden;
+    }
+    #stats::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='[w3.org](http://www.w3.org/2000/svg)'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B5CF6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 32px; text-align: center;
+    }
+
+    .stat-item { position: relative; }
+    .stat-num {
+      font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+    .stat-suffix { color: var(--secondary); font-size: 2rem; font-weight: 700; }
+    .stat-label { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 8px; font-weight: 500; }
+    .stat-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+
+    /* ============================================================
+       SKILLS SECTION
+    ============================================================ */
+    #skills { padding: 120px 24px; background: white; }
+
+    .skills-header { text-align: center; margin-bottom: 64px; }
+
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 28px;
+    }
+
+    .skill-card {
+      background: var(--bg); border-radius: 20px; padding: 28px 20px;
+      text-align: center; border: 1px solid rgba(139,92,246,0.1);
+      transition: all 0.4s ease;
+    }
+    .skill-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: var(--secondary); }
+
+    .skill-circle-wrap {
+      position: relative; width: 100px; height: 100px;
+      margin: 0 auto 16px;
+    }
+    .skill-circle-wrap svg { transform: rotate(-90deg); }
+    .skill-bg { fill: none; stroke: rgba(139,92,246,0.1); stroke-width: 6; }
+    .skill-progress {
+      fill: none; stroke: url(#skillGrad); stroke-width: 6;
+      stroke-linecap: round;
+      stroke-dasharray: 283; stroke-dashoffset: 283;
+      transition: stroke-dashoffset 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .skill-pct {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .skill-icon-wrap {
+      font-size: 1.5rem; margin-bottom: 8px;
+    }
+    .skill-name { font-weight: 700; font-size: 0.88rem; color: var(--text); }
+
+    /* ============================================================
+       PORTFOLIO SECTION
+    ============================================================ */
+    #portfolio { padding: 120px 24px; background: var(--bg); }
+
+    .portfolio-header { text-align: center; margin-bottom: 48px; }
+
+    .filter-tabs {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-bottom: 48px;
+    }
+    .filter-tab {
+      padding: 10px 24px; border-radius: 100px;
+      border: 1.5px solid rgba(139,92,246,0.2);
+      background: white; color: var(--text-muted);
+      font-weight: 500; font-size: 0.85rem;
+      cursor: pointer; transition: all 0.3s ease;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--gradient); color: white; border-color: transparent;
+      box-shadow: 0 6px 20px rgba(139,92,246,0.3);
+    }
+
+    .portfolio-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
+    .portfolio-card {
+      background: white; border-radius: 24px; overflow: hidden;
+      border: 1px solid rgba(139,92,246,0.08);
+      box-shadow: 0 4px 24px rgba(139,92,246,0.06);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .portfolio-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+
+    .portfolio-thumb {
+      height: 200px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .portfolio-thumb-bg { position: absolute; inset: 0; }
+    .portfolio-thumb-icon { font-size: 4rem; position: relative; z-index: 1; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.2)); }
+    .portfolio-cat-badge {
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+      padding: 4px 12px; border-radius: 100px;
+      font-size: 0.72rem; font-weight: 600; color: var(--primary);
+    }
+
+    .portfolio-body { padding: 24px; }
+    .portfolio-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 8px; }
+    .portfolio-meta {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0;
+    }
+    .meta-item { background: var(--bg); border-radius: 10px; padding: 10px 14px; }
+    .meta-key { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .meta-val { font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-top: 2px; }
+
+    .portfolio-result {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(16,185,129,0.08); border-radius: 10px; padding: 10px 14px;
+      color: #059669; font-size: 0.85rem; font-weight: 600;
+      border: 1px solid rgba(16,185,129,0.15);
+    }
+
+    /* ============================================================
+       WHY CHOOSE ME
+    ============================================================ */
+    #why { padding: 120px 24px; background: white; }
+
+    .why-header { text-align: center; margin-bottom: 64px; }
+
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .why-card {
+      background: var(--bg); border-radius: 24px; padding: 32px;
+      border: 1px solid rgba(139,92,246,0.08);
+      transition: all 0.4s ease; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .why-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--gradient); transform: scaleX(0);
+      transition: transform 0.4s ease; transform-origin: left;
+    }
+    .why-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+    .why-card:hover::after { transform: scaleX(1); }
+
+    .why-icon {
+      width: 70px; height: 70px; border-radius: 20px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(196,181,253,0.2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 20px;
+      border: 1px solid rgba(139,92,246,0.15);
+    }
+    .why-title { font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
+    .why-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    #testimonials {
+      padding: 120px 24px;
+      background: linear-gradient(160deg, #1a0533 0%, #2d1052 100%);
+    }
+
+    .testi-header { text-align: center; margin-bottom: 64px; }
+    .testi-header .section-badge { background: rgba(255,255,255,0.1); color: var(--accent); border-color: rgba(255,255,255,0.15); }
+
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .testi-card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 24px; padding: 32px;
+      transition: all 0.4s ease; position: relative;
+    }
+    .testi-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.12); }
+
+    .testi-quote {
+      font-size: 3rem; color: var(--secondary); line-height: 1;
+      margin-bottom: 16px; opacity: 0.6;
+    }
+    .testi-text { color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px; font-style: italic; }
+
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: white; font-weight: 700;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .testi-name { color: white; font-weight: 700; font-size: 0.95rem; }
+    .testi-role { color: var(--accent); font-size: 0.78rem; }
+
+    .testi-stars { color: #FFD700; font-size: 0.85rem; margin-bottom: 4px; }
+
+    /* ============================================================
+       CTA SECTION
+    ============================================================ */
+    #cta {
+      padding: 120px 24px; text-align: center;
+      background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 50%, #C4B5FD 100%);
+      position: relative; overflow: hidden;
+    }
+    #cta::before {
+      content: ''; position: absolute; inset: -50%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: ctaPulse 4s ease-in-out infinite;
+    }
+    @keyframes ctaPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+    .cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .cta-title {
+      font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800; color: white; margin-bottom: 20px;
+    }
+    .cta-sub { color: rgba(255,255,255,0.85); font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px; }
+
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: white; color: var(--primary);
+      padding: 18px 40px; border-radius: 100px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    .btn-white:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 16px 50px rgba(0,0,0,0.3); }
+
+    /* ============================================================
+       CONTACT SECTION
+    ============================================================ */
+    #contact { padding: 120px 24px; background: var(--bg); }
+
+    .contact-header { text-align: center; margin-bottom: 64px; }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start;
+    }
+
+    .contact-info { }
+    .contact-info-title { font-weight: 700; font-size: 1.4rem; margin-bottom: 8px; }
+    .contact-info-sub { color: var(--text-muted); line-height: 1.7; margin-bottom: 32px; }
+
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      background: white; border-radius: 16px; padding: 18px 20px;
+      margin-bottom: 16px; border: 1px solid rgba(139,92,246,0.1);
+      text-decoration: none; color: var(--text);
+      transition: all 0.3s ease;
+    }
+    .contact-item:hover { border-color: var(--secondary); transform: translateX(6px); box-shadow: var(--shadow); }
+    .contact-item-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(196,181,253,0.2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--primary); flex-shrink: 0;
+    }
+    .contact-item-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
+    .contact-item-val { font-weight: 600; font-size: 0.9rem; }
+
+    .social-links { display: flex; gap: 12px; margin-top: 24px; }
+    .social-link {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: white; border: 1.5px solid rgba(139,92,246,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary); text-decoration: none;
+      transition: all 0.3s ease; font-size: 1rem;
+    }
+    .social-link:hover { background: var(--gradient); color: white; border-color: transparent; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(139,92,246,0.3); }
+
+    /* Contact Form */
+    .contact-form {
+      background: white; border-radius: 28px; padding: 44px;
+      box-shadow: 0 8px 40px rgba(139,92,246,0.08);
+      border: 1px solid rgba(139,92,246,0.08);
+    }
+
+    .form-group { position: relative; margin-bottom: 24px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 18px 20px 10px;
+      background: var(--bg); border: 1.5px solid rgba(139,92,246,0.15);
+      border-radius: 14px; font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; color: var(--text);
+      transition: all 0.3s ease; outline: none;
+      resize: none;
+    }
+    .form-group textarea { min-height: 130px; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+      background: white;
+    }
+    .form-label {
+      position: absolute; top: 16px; left: 20px;
+      color: var(--text-muted); font-size: 0.875rem;
+      transition: all 0.3s ease; pointer-events: none;
+    }
+    .form-group input:focus ~ .form-label,
+    .form-group input:not(:placeholder-shown) ~ .form-label,
+    .form-group textarea:focus ~ .form-label,
+    .form-group textarea:not(:placeholder-shown) ~ .form-label {
+      top: 6px; font-size: 0.7rem; color: var(--primary); font-weight: 600;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-submit {
+      width: 100%; padding: 18px;
+      background: var(--gradient); color: white;
+      border: none; border-radius: 14px; font-family: 'Inter', sans-serif;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .form-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(139,92,246,0.4); }
+
+    .form-success {
+      display: none; text-align: center; padding: 20px;
+      background: rgba(16,185,129,0.08); border-radius: 14px;
+      border: 1px solid rgba(16,185,129,0.2); color: #059669;
+      margin-top: 16px; font-weight: 600;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: linear-gradient(160deg, #0f0225, #1a0533);
+      padding: 80px 24px 40px; color: rgba(255,255,255,0.7);
+    }
+
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 60px;
+    }
+
+    .footer-brand { }
+    .footer-logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem;
+      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      display: block; margin-bottom: 16px;
+    }
+    .footer-tagline { font-size: 0.88rem; line-height: 1.7; margin-bottom: 24px; }
+
+    .footer-col h4 { color: white; font-weight: 700; font-size: 0.95rem; margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      font-size: 0.875rem; transition: all 0.3s ease;
+    }
+    .footer-links a:hover { color: var(--accent); padding-left: 6px; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 32px; display: flex;
+      align-items: center; justify-content: space-between; flex-wrap: gap;
+    }
+    .footer-copy { font-size: 0.825rem; }
+
+    /* ============================================================
+       MOBILE RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+      .hero-visual { height: 320px; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 12px; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: calc(100% + 12px); left: 0; right: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-radius: 20px; padding: 20px; gap: 4px; box-shadow: 0 20px 60px rgba(139,92,246,0.15); }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      nav { position: fixed; }
+      .fc1,.fc2,.fc3,.fc4 { display: none; }
+      .about-highlights { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Scroll to top */
+    .scroll-top {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gradient); color: white;
+      border: none; cursor: pointer; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(139,92,246,0.4);
+      opacity: 0; transform: translateY(20px);
+      transition: all 0.3s ease; z-index: 9997;
+    }
+    .scroll-top.show { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { transform: translateY(-4px); }
+
+    /* ============================================================
+       HIDDEN / SHOW for portfolio filter
+    ============================================================ */
+    .portfolio-card.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-text">Ishwarya Sivaprakash</div>
+  <div class="loader-bar"><div class="loader-bar-inner"></div></div>
+</div>
+
+<!-- PARTICLES -->
+<div id="particles"></div>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Ishwarya S.</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section id="hero">
+  <div class="hero-bg-orb orb1"></div>
+  <div class="hero-bg-orb orb2"></div>
+  <div class="hero-bg-orb orb3"></div>
+
+  <div class="hero-grid">
+    <!-- Left -->
+    <div>
+      <div class="hero-badge reveal"><i class="fa-solid fa-star"></i> Available for New Projects</div>
+      <h1 class="hero-name reveal">
+        Hi, I'm<br /><span>Ishwarya</span><br />Sivaprakash
+      </h1>
+      <p class="hero-title reveal">Freelance Digital Marketing Specialist</p>
+      <h2 class="hero-tagline reveal">Helping Businesses Grow<br />Through Strategic Digital Marketing</h2>
+      <p class="hero-desc reveal">
+        I craft data-driven marketing strategies that attract the right audience, generate quality leads, and convert them into loyal customers. From Meta Ads and Google Ads to compelling content and creative design — I deliver measurable results that fuel real business growth.
+      </p>
+      <div class="hero-btns reveal">
+        <a href="#portfolio" class="btn-primary"><i class="fa-solid fa-briefcase"></i> View Portfolio</a>
+        <a href="#contact" class="btn-secondary"><i class="fa-solid fa-paper-plane"></i> Contact Me</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">Campaigns</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">30+</div><div class="hero-stat-label">Businesses</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">90%</div><div class="hero-stat-label">Satisfaction</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">100+</div><div class="hero-stat-label">Creatives</div></div>
+      </div>
+    </div>
+
+    <!-- Right: Laptop Mockup -->
+    <div class="hero-visual reveal-right">
+      <!-- Floating badges -->
+      <div class="float-card fc1">
+        <span class="fc-icon">📈</span>
+        <div><div class="fc-label">Revenue Growth</div><div class="fc-val">+127% this month</div></div>
+      </div>
+      <div class="float-card fc2">
+        <span class="fc-icon">🎯</span>
+        <div><div class="fc-label">Leads Generated</div><div class="fc-val">2,340 qualified</div></div>
+      </div>
+      <div class="float-card fc3">
+        <span class="fc-icon">🚀</span>
+        <div><div class="fc-label">ROAS</div><div class="fc-val">4.8x average</div></div>
+      </div>
+      <div class="float-card fc4">
+        <span class="fc-icon">⭐</span>
+        <div><div class="fc-label">Client Rating</div><div class="fc-val">5.0 / 5.0</div></div>
+      </div>
+
+      <!-- Laptop -->
+      <div class="hero-laptop">
+        <div class="laptop-screen">
+          <div class="laptop-topbar">
+            <div class="laptop-dot"></div><div class="laptop-dot"></div><div class="laptop-dot"></div>
+            <span style="color:rgba(255,255,255,0.3);font-size:0.6rem;margin-left:8px;">Campaign Dashboard</span>
+          </div>
+          <div class="laptop-graph">
+            <div class="graph-bar" style="height:40%;animation-delay:0s"></div>
+            <div class="graph-bar" style="height:65%;animation-delay:0.1s"></div>
+            <div class="graph-bar" style="height:50%;animation-delay:0.2s"></div>
+            <div class="graph-bar" style="height:80%;animation-delay:0.3s"></div>
+            <div class="graph-bar" style="height:60%;animation-delay:0.4s"></div>
+            <div class="graph-bar" style="height:90%;animation-delay:0.5s"></div>
+            <div class="graph-bar" style="height:75%;animation-delay:0.6s"></div>
+            <div class="graph-bar" style="height:95%;animation-delay:0.7s"></div>
+          </div>
+          <div class="laptop-metrics">
+            <div class="metric-card"><div class="metric-label">CTR</div><div class="metric-val">4.2%</div><div class="metric-up">▲ 0.8%</div></div>
+            <div class="metric-card"><div class="metric-label">Conv. Rate</div><div class="metric-val">6.7%</div><div class="metric-up">▲ 1.2%</div></div>
+            <div class="metric-card"><div class="metric-label">ROAS</div><div class="metric-val">4.8x</div><div class="metric-up">▲ 0.5x</div></div>
+            <div class="metric-card"><div class="metric-label">Leads</div><div class="metric-val">2,340</div><div class="metric-up">▲ 18%</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+============================================================ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Left visual -->
+      <div class="about-img-wrap reveal-left">
+        <div class="about-img-bg">
+          <div class="about-avatar-text">👩‍💻</div>
+          <div class="about-badge-card abc1">
+            <div class="abc-icon">🏆</div>
+            <div class="abc-text"><p>Experience</p><p>2+ Years</p></div>
+          </div>
+          <div class="about-badge-card abc2">
+            <div class="abc-icon">💰</div>
+            <div class="abc-text"><p>Ad Spend Managed</p><p>₹10L+</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right content -->
+      <div class="reveal-right">
+        <div class="section-badge"><i class="fa-solid fa-user"></i> About Me</div>
+        <h2 class="section-title">A Digital Marketer Who <span class="gradient-text">Delivers Results</span></h2>
+        <p class="about-desc">
+          I'm Ishwarya Sivaprakash, a passionate Freelance Digital Marketing Specialist dedicated to helping businesses grow their online presence, attract the right customers, and achieve sustainable, measurable growth.
+        </p>
+        <p class="about-desc">
+          My approach is simple: combine creativity with data. Every campaign I build is rooted in audience research, market insights, and strategic thinking — because marketing that doesn't drive ROI is just noise. Whether you're a startup finding your footing or an established brand scaling up, I bring agency-level expertise at freelance pricing.
+        </p>
+        <p class="about-desc">
+          From crafting high-converting Meta Ads and Google Ads to producing compelling creatives and capturing stunning photography — I'm your end-to-end digital marketing partner.
+        </p>
+
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon">🎯</div>
+            <div class="highlight-text"><h4>Data-Driven Strategy</h4><p>Every decision backed by analytics</p></div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🚀</div>
+            <div class="highlight-text"><h4>Growth-Focused</h4><p>ROI at the core of everything</p></div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">✨</div>
+            <div class="highlight-text"><h4>Creative Excellence</h4><p>Designs that capture attention</p></div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🤝</div>
+            <div class="highlight-text"><h4>Dedicated Partner</h4><p>Long-term client relationships</p></div>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn-primary" style="display:inline-flex;">
+          <i class="fa-solid fa-calendar"></i> Let's Work Together
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+============================================================ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div class="section-badge"><i class="fa-solid fa-briefcase"></i> What I Do</div>
+      <h2 class="section-title">Services That <span class="gradient-text">Drive Growth</span></h2>
+      <p class="section-subtitle">End-to-end digital marketing solutions tailored to your business goals — from strategy to execution.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-icon">📱</div>
+        <div class="service-name">Social Media Marketing</div>
+        <div class="service-desc">Strategic content planning, audience engagement, community growth, and full-page management across all major platforms.</div>
+        <div class="service-tags"><span class="service-tag">Instagram</span><span class="service-tag">Facebook</span><span class="service-tag">LinkedIn</span><span class="service-tag">Growth</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">🔍</div>
+        <div class="service-name">Google Ads Management</div>
+        <div class="service-desc">Search Ads, Display Ads, and Performance Max campaigns designed to maximize conversions and minimize wasted spend.</div>
+        <div class="service-tags"><span class="service-tag">Search Ads</span><span class="service-tag">Display</span><span class="service-tag">PMax</span><span class="service-tag">CRO</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">📣</div>
+        <div class="service-name">Meta Ads</div>
+        <div class="service-desc">High-impact Facebook and Instagram advertising campaigns focused on generating leads, driving sales, and scaling brand awareness profitably.</div>
+        <div class="service-tags"><span class="service-tag">Facebook Ads</span><span class="service-tag">Instagram Ads</span><span class="service-tag">Retargeting</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">🎨</div>
+        <div class="service-name">Creative Poster Design</div>
+        <div class="service-desc">Professional marketing creatives, promotional banners, and visual content that stops the scroll and communicates your brand powerfully.</div>
+        <div class="service-tags"><span class="service-tag">Canva</span><span class="service-tag">Photoshop</span><span class="service-tag">Branding</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">🎥</div>
+        <div class="service-name">Video Editing & Reels</div>
+        <div class="service-desc">Short-form videos, promotional content, and social media reels crafted to maximize engagement and reach on every platform.</div>
+        <div class="service-tags"><span class="service-tag">Reels</span><span class="service-tag">Short-form</span><span class="service-tag">Promo Videos</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">📷</div>
+        <div class="service-name">Product & Business Photography</div>
+        <div class="service-desc">Professional photography for products, services, businesses, and events that elevates your brand's visual identity.</div>
+        <div class="service-tags"><span class="service-tag">Product Shoots</span><span class="service-tag">Events</span><span class="service-tag">Brand Photos</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">💡</div>
+        <div class="service-name">Lead Generation Campaigns</div>
+        <div class="service-desc">Targeted campaigns designed to attract and qualify high-intent prospects, filling your sales pipeline with real business opportunities.</div>
+        <div class="service-tags"><span class="service-tag">Lead Forms</span><span class="service-tag">Funnels</span><span class="service-tag">Targeting</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">📊</div>
+        <div class="service-name">Marketing Strategy & Consultation</div>
+        <div class="service-desc">Custom digital marketing roadmaps built around your specific business goals, industry, target audience, and growth milestones.</div>
+        <div class="service-tags"><span class="service-tag">Strategy</span><span class="service-tag">Consulting</span><span class="service-tag">Roadmap</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">⭐</div>
+        <div class="service-name">Brand Awareness Campaigns</div>
+        <div class="service-desc">Building lasting brand recognition through consistent messaging, creative storytelling, and multi-platform audience engagement.</div>
+        <div class="service-tags"><span class="service-tag">Awareness</span><span class="service-tag">Brand Voice</span><span class="service-tag">Reach</span></div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">💰</div>
+        <div class="service-name">Customer Acquisition & Growth</div>
+        <div class="service-desc">End-to-end strategies to attract, convert, and retain customers — building a loyal base that drives sustainable long-term revenue.</div>
+        <div class="service-tags"><span class="service-tag">Acquisition</span><span class="service-tag">Retention</span><span class="service-tag">LTV</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STATS
+============================================================ -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-icon">🚀</span>
+        <div class="stat-num"><span class="counter" data-target="50">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-label">Campaigns Managed</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-icon">🎨</span>
+        <div class="stat-num"><span class="counter" data-target="100">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-label">Creatives Delivered</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-icon">🤝</span>
+        <div class="stat-num"><span class="counter" data-target="30">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-label">Businesses Supported</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-icon">⭐</span>
+        <div class="stat-num"><span class="counter" data-target="90">0</span><span class="stat-suffix">%</span></div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SKILLS
+============================================================ -->
+<section id="skills">
+  <div class="container">
+    <div class="skills-header reveal">
+      <div class="section-badge"><i class="fa-solid fa-chart-bar"></i> Expertise</div>
+      <h2 class="section-title">My <span class="gradient-text">Core Skills</span></h2>
+      <p class="section-subtitle" style="margin:0 auto;">A versatile skill set covering every dimension of modern digital marketing.</p>
+    </div>
+
+    <!-- SVG gradient def (hidden) -->
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="skillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#8B5CF6"/>
+          <stop offset="100%" style="stop-color:#C4B5FD"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="skills-grid">
+      <!-- Each skill card -->
+      <div class="skill-card reveal" data-skill="92">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">92%</div>
+        </div>
+        <div class="skill-icon-wrap">📱</div>
+        <div class="skill-name">Social Media Marketing</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="88">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">88%</div>
+        </div>
+        <div class="skill-icon-wrap">📣</div>
+        <div class="skill-name">Meta Ads</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="85">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">85%</div>
+        </div>
+        <div class="skill-icon-wrap">🔍</div>
+        <div class="skill-name">Google Ads</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="82">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">82%</div>
+        </div>
+        <div class="skill-icon-wrap">📊</div>
+        <div class="skill-name">Performance Marketing</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="88">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">88%</div>
+        </div>
+        <div class="skill-icon-wrap">✍️</div>
+        <div class="skill-name">Content Strategy</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="95">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">95%</div>
+        </div>
+        <div class="skill-icon-wrap">🎨</div>
+        <div class="skill-name">Canva</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="80">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">80%</div>
+        </div>
+        <div class="skill-icon-wrap">🖼️</div>
+        <div class="skill-name">Adobe Photoshop</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="85">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">85%</div>
+        </div>
+        <div class="skill-icon-wrap">🎥</div>
+        <div class="skill-name">Video Editing</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="87">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">87%</div>
+        </div>
+        <div class="skill-icon-wrap">📈</div>
+        <div class="skill-name">Analytics & Reporting</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="90">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">90%</div>
+        </div>
+        <div class="skill-icon-wrap">🎯</div>
+        <div class="skill-name">Lead Generation</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="75">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">75%</div>
+        </div>
+        <div class="skill-icon-wrap">⚙️</div>
+        <div class="skill-name">Marketing Automation</div>
+      </div>
+
+      <div class="skill-card reveal" data-skill="78">
+        <div class="skill-circle-wrap">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle class="skill-bg" cx="50" cy="50" r="45"/>
+            <circle class="skill-progress" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="skill-pct">78%</div>
+        </div>
+        <div class="skill-icon-wrap">🌐</div>
+        <div class="skill-name">SEO Fundamentals</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PORTFOLIO
+============================================================ -->
+<section id="portfolio">
+  <div class="container">
+    <div class="portfolio-header reveal">
+      <div class="section-badge"><i class="fa-solid fa-folder-open"></i> My Work</div>
+      <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+      <p class="section-subtitle" style="margin:0 auto;">Real campaigns, real results. Here's a snapshot of the work that has driven measurable growth for my clients.</p>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All Projects</button>
+      <button class="filter-tab" data-filter="advertising">Advertising</button>
+      <button class="filter-tab" data-filter="social">Social Media</button>
+      <button class="filter-tab" data-filter="design">Creative Design</button>
+      <button class="filter-tab" data-filter="photography">Photography</button>
+      <button class="filter-tab" data-filter="video">Video Editing</button>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card reveal" data-category="advertising">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-bg" style="background:linear-gradient(135deg,#8B5CF6,#C4B5FD)"></div>
+          <div class="portfolio-thumb-icon">📣</div>
+          <div class="portfolio-cat-badge">Meta Ads</div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-title">Increased Leads Through Meta Ads</div>
+          <div class="portfolio-meta">
+            <div class="meta-item"><div class="meta-key">Challenge</div><div class="meta-val">High CPL, low quality leads</div></div>
+            <div class="meta-item"><div class="meta-key">Strategy</div><div class="meta-val">Lookalike + retargeting funnels</div></div>
+          </div>
+          <div class="portfolio-result"><i class="fa-solid fa-arrow-trend-up"></i> 3.2x more leads, CPL reduced by 45%</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal" data-category="social">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-bg" style="background:linear-gradient(135deg,#6366F1,#A5B4FC)"></div>
+          <div class="portfolio-thumb-icon">📱</div>
+          <div class="portfolio-cat-badge">Social Media</div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-title">Social Media Growth Campaign</div>
+          <div class="portfolio-meta">
+            <div class="meta-item"><div class="meta-key">Challenge</div><div class="meta-val">Low engagement, stagnant following</div></div>
+            <div class="meta-item"><div class="meta-key">Strategy</div><div class="meta-val">Content calendar + viral hooks</div></div>
+          </div>
+          <div class="portfolio-result"><i class="fa-solid fa-arrow-trend-up"></i> 150% follower growth in 60 days</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal" data-category="design">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-bg" style="background:linear-gradient(135deg,#EC4899,#F9A8D4)"></div>
+          <div class="portfolio-thumb-icon">🎨</div>
+          <div class="portfolio-cat-badge">Creative Design</div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-title">Creative Poster Design Project</div>
+          <div class="portfolio-meta">
+            <div class="meta-item"><div class="meta-key">Challenge</div><div class="meta-val">Weak visual brand identity</div></div>
+            <div class="meta-item"><div class="meta-key">Strategy</div><div class="meta-val">Premium visual system & templates</div></div>
+          </div>
+          <div class="portfolio-result"><i class="fa-solid fa-arrow-trend-up"></i> 40% better ad CTR with new creatives</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal" data-category="photography">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-bg" style="background:linear-gradient(135deg,#F59E0B,#FDE68A)"></div>
+          <div class="portfolio-thumb-icon">📷</div>
+          <div class="portfolio-cat-badge">Photography</div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-title">Product Photography Project</div>
+          <div class="portfolio-meta">
+            <div class="meta-item"><div class="meta-key">Challenge</div><div class="meta-val">Low product page conversions</div></div>
+            <div class="meta-item"><div class="meta-key">Strategy</div><div class="meta-val">Studio-quality lifestyle shots</div></div>
+          </div>
+          <div class="portfolio-result"><i class="fa-solid fa-arrow-trend-up"></i> 28% conversion rate increase</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal" data-category="advertising">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-bg" style="background:linear-gradient(135deg,#10B981,#6EE7B7)"></div>
+          <div class="portfolio-thumb-icon">🔍</div>
+          <div class="portfolio-cat-badge">Google Ads</div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-title">Google Ads Campaign Optimization</div>
+          <div class="portfolio-meta">
+            <div class="meta-item"><div class="meta-key">Challenge</div><div class="meta-val">High CPA, wasted ad spend</div></div>
+            <div class="meta-item"><div class="meta-key">Strategy</div><div class="meta-val">Smart bidding + negative keywords</div></div>
+          </div>
+          <div class="portfolio-result"><i class="fa-solid fa-arrow-trend-up"></i> ROAS improved from 1.8x to 4.5x</div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal" data-category="video">
+        <div class="portfolio-thumb">
+          <div class="portfolio-thumb-bg" style="background:linear-gradient(135deg,#EF4444,#FCA5A5)"></div>
+          <div class="portfolio-thumb-icon">🎥</div>
+          <div class="portfolio-cat-badge">Video Editing</div>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-title">Video Editing & Reels Creation</div>
+          <div class="portfolio-meta">
+            <div class="meta-item"><div class="meta-key">Challenge</div><div class="meta-val">No video presence on social media</div></div>
+            <div class="meta-item"><div class="meta-key">Strategy</div><div class="meta-val">Weekly Reels with trending hooks</div></div>
+          </div>
+          <div class="portfolio-result"><i class="fa-solid fa-arrow-trend-up"></i> 500K+ organic reach in 90 days</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY CHOOSE ME
+============================================================ -->
+<section id="why">
+  <div class="container">
+    <div class="why-header reveal">
+      <div class="section-badge"><i class="fa-solid fa-medal"></i> Why Choose Me</div>
+      <h2 class="section-title">The <span class="gradient-text">Right Partner</span> for Your Growth</h2>
+      <p class="section-subtitle" style="margin:0 auto;">Everything you'd expect from a premium agency — with the personal touch only a dedicated freelancer can offer.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🎯</div>
+        <div class="why-title">Creative & Data-Driven</div>
+        <div class="why-desc">I combine right-brain creativity with left-brain analytics — every campaign is both visually compelling and strategically optimized for performance.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">💸</div>
+        <div class="why-title">Affordable Freelance Pricing</div>
+        <div class="why-desc">Agency-quality strategy and execution at freelancer pricing. Get premium digital marketing without the agency overhead.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🔧</div>
+        <div class="why-title">Personalized Strategies</div>
+        <div class="why-desc">No cookie-cutter campaigns. Every strategy is custom-built around your unique business, audience, and goals.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">⏰</div>
+        <div class="why-title">Timely Delivery</div>
+        <div class="why-desc">Deadlines are non-negotiable. I respect your time and consistently deliver quality work when promised — every single time.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">📈</div>
+        <div class="why-title">ROI-Focused Execution</div>
+        <div class="why-desc">My success is measured by yours. Every marketing rupee is tracked, optimized, and made to work harder for your bottom line.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">Dedicated Support</div>
+        <div class="why-desc">I don't disappear after launch. I'm your long-term growth partner — always available, always invested in your success.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testi-header reveal">
+      <div class="section-badge"><i class="fa-solid fa-quote-left"></i> Testimonials</div>
+      <h2 class="section-title" style="color:white;">What Clients <span class="gradient-text">Say About Me</span></h2>
+      <p class="section-subtitle" style="margin:0 auto;color:rgba(255,255,255,0.6);">Real feedback from real business owners I've had the privilege of working with.</p>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">❝</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Ishwarya completely transformed our Meta Ads strategy. Within 6 weeks, our lead quality improved dramatically and our cost per lead dropped by nearly 40%. She doesn't just run ads — she thinks about your whole business. Absolutely recommend her."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RK</div>
+          <div>
+            <div class="testi-name">Rajesh Kumar</div>
+            <div class="testi-role">Founder, RK Interiors</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal">
+        <div class="testi-quote">❝</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Working with Ishwarya was a game-changer for our brand. Our Instagram went from 800 to over 5,000 engaged followers in just 2 months. The creatives she designed are stunning and the content calendar she built keeps our page consistently active."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SP</div>
+          <div>
+            <div class="testi-name">Sunitha Prakash</div>
+            <div class="testi-role">CEO, Bloom Skincare</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal">
+        <div class="testi-quote">❝</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Our Google Ads were burning money with no results before Ishwarya stepped in. She restructured everything — keywords, bidding, creatives — and our ROAS went from 1.8x to 4.5x in 8 weeks. She's the real deal. Will continue working with her long-term."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AR</div>
+          <div>
+            <div class="testi-name">Arjun Reddy</div>
+            <div class="testi-role">Director, TechEdge Solutions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA
+============================================================ -->
+<section id="cta">
+  <div class="cta-content">
+    <div class="section-badge" style="background:rgba(255,255,255,0.2);color:white;border-color:rgba(255,255,255,0.3);margin-bottom:20px;" class="reveal">
+      <i class="fa-solid fa-rocket"></i> Ready to Grow?
+    </div>
+    <h2 class="cta-title reveal">Ready to Grow Your Business?</h2>
+    <p class="cta-sub reveal">Let's build your brand, generate more leads, and achieve measurable business growth through strategic digital marketing. Your success story starts here.</p>
+    <a href="#contact" class="btn-white reveal">
+      <i class="fa-solid fa-calendar-check"></i> Schedule a Consultation
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+============================================================ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-header reveal">
+      <div class="section-badge"><i class="fa-solid fa-envelope"></i> Get In Touch</div>
+      <h2 class="section-title">Let's Start <span class="gradient-text">Growing Together</span></h2>
+      <p class="section-subtitle" style="margin:0 auto;">Have a project in mind? Fill out the form and I'll get back to you within 24 hours.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Left: Info -->
+      <div class="reveal-left">
+        <h3 class="contact-info-title">Contact Information</h3>
+        <p class="contact-info-sub">Ready to take your digital marketing to the next level? Let's connect and explore how I can help your business grow.</p>
+
+        <a href="mailto:510ishwaryaprakash@gmail.com" class="contact-item">
+          <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div><div class="contact-item-label">Email</div><div class="contact-item-val">510ishwaryaprakash@gmail.com</div></div>
+        </a>
+
+        <a href="tel:+918903560436" class="contact-item">
+          <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
+          <div><div class="contact-item-label">Phone</div><div class="contact-item-val">+91 8903560436 / 7708440282</div></div>
+        </a>
+
+        <a href="[wa.me](https://wa.me/918903560436)" target="_blank" class="contact-item">
+          <div class="contact-item-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div><div class="contact-item-label">WhatsApp</div><div class="contact-item-val">+91 8903560436</div></div>
+        </a>
+
+        <a href="[linkedin.com](https://www.linkedin.com/in/ishwarya-s-5227381a3/)" target="_blank" class="contact-item">
+          <div class="contact-item-icon"><i class="fa-brands fa-linkedin"></i></div>
+          <div><div class="contact-item-label">LinkedIn</div><div class="contact-item-val">ishwarya-s-5227381a3</div></div>
+        </a>
+
+        <div class="social-links">
+          <a href="[linkedin.com](https://www.linkedin.com/in/ishwarya-s-5227381a3/)" target="_blank" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="[instagram.com](https://www.instagram.com/ishwarya_s510/)" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="[wa.me](https://wa.me/918903560436)" target="_blank" class="social-link" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:510ishwaryaprakash@gmail.com" class="social-link" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="reveal-right">
+        <form class="contact-form" id="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="fname" placeholder=" " required />
+              <label class="form-label" for="fname">Your Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="femail" placeholder=" " required />
+              <label class="form-label" for="femail">Email Address</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="tel" id="fphone" placeholder=" " />
+              <label class="form-label" for="fphone">Phone Number</label>
+            </div>
+            <div class="form-group">
+              <select id="fservice" style="padding:16px 20px;appearance:none;">
+                <option value="" disabled selected>Select a Service</option>
+                <option>Social Media Marketing</option>
+                <option>Meta Ads</option>
+                <option>Google Ads Management</option>
+                <option>Creative Poster Design</option>
+                <option>Video Editing & Reels</option>
+                <option>Product Photography</option>
+                <option>Lead Generation</option>
+                <option>Marketing Strategy</option>
+                <option>Brand Awareness</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" id="fbusiness" placeholder=" " />
+            <label class="form-label" for="fbusiness">Business / Company Name</label>
+          </div>
+          <div class="form-group">
+            <textarea id="fmessage" placeholder=" " required></textarea>
+            <label class="form-label" for="fmessage">Tell me about your project & goals</label>
+          </div>
+          <button type="submit" class="form-submit">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+          <div class="form-success" id="form-success">
+            <i class="fa-solid fa-circle-check" style="font-size:1.5rem;display:block;margin-bottom:8px;"></i>
+            Message sent! I'll get back to you within 24 hours. 🎉
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo">Ishwarya Sivaprakash</span>
+        <p class="footer-tagline">Helping businesses grow through creative marketing, strategic advertising, and measurable results. Your success is my mission.</p>
+        <div class="social-links">
+          <a href="[linkedin.com](https://www.linkedin.com/in/ishwarya-s-5227381a3/)" target="_blank" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="[instagram.com](https://www.instagram.com/ishwarya_s510/)" target="_blank" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="[wa.me](https://wa.me/918903560436)" target="_blank" class="social-link" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:510ishwaryaprakash@gmail.com" class="social-link" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#services">Meta Ads</a></li>
+          <li><a href="#services">Google Ads</a></li>
+          <li><a href="#services">Social Media</a></li>
+          <li><a href="#services">Content Creation</a></li>
+          <li><a href="#services">Video Editing</a></li>
+          <li><a href="#services">Photography</a></li>
+          <li><a href="#services">Lead Generation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:510ishwaryaprakash@gmail.com"><i class="fa-solid fa-envelope" style="margin-right:6px;"></i>Email Me</a></li>
+          <li><a href="tel:+918903560436"><i class="fa-solid fa-phone" style="margin-right:6px;"></i>8903560436</a></li>
+          <li><a href="tel:+917708440282"><i class="fa-solid fa-phone" style="margin-right:6px;"></i>7708440282</a></li>
+          <li><a href="[wa.me](https://wa.me/918903560436)" target="_blank"><i class="fa-brands fa-whatsapp" style="margin-right:6px;"></i>WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Ishwarya Sivaprakash | Freelance Digital Marketing Specialist</p>
+      <p class="footer-copy" style="color:rgba(255,255,255,0.4);">Helping businesses grow through creative marketing, strategic advertising, and measurable results.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+  /* ── LOADER ── */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 2000);
+  });
+
+  /* ── PARTICLES ── */
+  const particleContainer = document.getElementById('particles');
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 8 + 3;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random() * 100}%;
+      animation-duration:${Math.random() * 15 + 12}s;
+      animation-delay:${Math.random() * 15}s;
+    `;
+    particleContainer.appendChild(p);
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  const cursor = document.getElementById('cursor');
+  const cursorFollower = document.getElementById('cursor-follower');
+  let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top  = mouseY + 'px';
+  });
+
+  function animateCursor() {
+    followerX += (mouseX - followerX) * 0.12;
+    followerY += (mouseY - followerY) * 0.12;
+    cursorFollower.style.left = followerX + 'px';
+    cursorFollower.style.top  = followerY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  document.querySelectorAll('a, button, .service-card, .portfolio-card, .why-card, .testi-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); cursorFollower.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); cursorFollower.classList.remove('hover'); });
+  });
+
+  /* ── NAVBAR ── */
+  const navbar = document.getElementById('navbar');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    /* Scrolled class */
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    /* Scroll-to-top button */
+    document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400);
+    /* Active nav link */
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+
+  /* ── HAMBURGER ── */
+  function toggleNav() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+  // Close on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
+  });
+
+  /* ── SCROLL REVEAL ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        /* Trigger counters if inside stats */
+        if (e.target.closest('#stats')) startCounters();
+        /* Trigger skill circles */
+        if (e.target.classList.contains('skill-card')) animateSkill(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 6) * 0.08}s`;
+    revealObserver.observe(el);
+  });
+
+  /* ── COUNTERS ── */
+  let countersStarted = false;
+  function startCounters() {
+    if (countersStarted) return;
+    countersStarted = true;
+    document.querySelectorAll('.counter').forEach(el => {
+      const target = +el.dataset.target;
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current);
+      }, 16);
+    });
+  }
+
+  /* ── SKILL CIRCLES ── */
+  function animateSkill(card) {
+    const pct = +card.dataset.skill;
+    const circle = card.querySelector('.skill-progress');
+    const circumference = 2 * Math.PI * 45; // r=45
+    const offset = circumference - (pct / 100) * circumference;
+    circle.style.strokeDasharray = circumference;
+    setTimeout(() => { circle.style.strokeDashoffset = offset; }, 100);
+  }
+
+  /* ── PORTFOLIO FILTER ── */
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.portfolio-card').forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.classList.toggle('hidden', !match);
+        if (match) {
+          card.style.animation = 'none';
+          card.offsetHeight; // reflow
+          card.style.animation = '';
+        }
+      });
+    });
+  });
+
+  /* ── CONTACT FORM ── */
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
+      document.getElementById('form-success').style.display = 'block';
+      e.target.reset();
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+        btn.disabled = false;
+        document.getElementById('form-success').style.display = 'none';
+      }, 4000);
+    }, 1800);
+  }
+
+  /* ── SMOOTH PARALLAX ── */
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const orbs = document.querySelectorAll('.hero-bg-orb');
+    orbs.forEach((orb, i) => {
+      orb.style.transform = `translateY(${scrolled * (0.05 + i * 0.02)}px)`;
+    });
+  });
+</script>
+</body>
+</html>
